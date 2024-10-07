@@ -14,3 +14,42 @@
 .bt-estilo {
     margin-top: 24px;
 }
+
+.form-control, 
+.form-control:focus, 
+#contact-form input, 
+#contact-form textarea, 
+#contact-form select, 
+form#formUpdate input, 
+form#formUpdate textarea, 
+form#formUpdate select, 
+form#formUpdateContato input, 
+form#formUpdateContato textarea, 
+form#formUpdateContato select, 
+form input, form textarea, 
+form select, 
+.header-search form input, 
+.header-search form select, 
+.header-search form select option, 
+.listComments .listCommentsQuestion, 
+textarea, 
+input, 
+select, 
+select option, 
+form [type="password" ] {
+        background-color: #202020;
+        color: #FFFFFF;
+    }
+
+    .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #fff;
+        opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #fff;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+        color: #fff;
+}
