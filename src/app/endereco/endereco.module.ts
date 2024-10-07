@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EnderecoRoutingModule } from './endereco-routing.module';
 import { LugaresComponent } from './lugares/lugares.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,6 +11,7 @@ import { LugaresComponent } from './lugares/lugares.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     EnderecoRoutingModule
   ]
 })
