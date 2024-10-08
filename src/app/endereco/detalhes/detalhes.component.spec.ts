@@ -3,10 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetalhesComponent } from './detalhes.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule } from '@angular/router';
+import { EnderecoService } from 'src/app/server/endereco.service';
+import { of } from 'rxjs';
 
 describe('DetalhesComponent', () => {
   let component: DetalhesComponent;
   let fixture: ComponentFixture<DetalhesComponent>;
+
+  let enderecoService: EnderecoService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,10 +21,38 @@ describe('DetalhesComponent', () => {
 
     fixture = TestBed.createComponent(DetalhesComponent);
     component = fixture.componentInstance;
+    enderecoService = TestBed.inject(EnderecoService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`Quando usuario clicar bt pdf
+    o mesmo devera ser chamado`, () => {
+      const data: any = [{
+        "cep": "91260-316",
+        "logradouro": "Rua São José",
+        "complemento": "(Lot P Alves)",
+        "unidade": "",
+        "bairro": "Mário Quintana",
+        "localidade": "Porto Alegre",
+        "uf": "RS",
+        "estado": "Rio Grande do Sul",
+        "regiao": "Sul",
+        "ibge": "4314902",
+        "gia": "",
+        "ddd": "51",
+        "siafi": "8801"
+      }]
+
+    const onEndereco = spyOn(enderecoService, 'listDetalhes').and.returnValue(
+      of(data)
+    )
+
+    component.detalhes();
+
+    expect(onEndereco).toHaveBeenCalled();
+});
 });
