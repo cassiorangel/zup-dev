@@ -11,7 +11,7 @@
             <div class="form-group col-2 col-md-2">
                 <label class="campos" for="inputEstado">Estado</label>
                 <select class="form-control" formControlName="name">
-                  <option selected>Escolher...</option>
+                  <option selected value="">Escolher...</option>
                   <option  *ngFor="let estado of estados" [ngValue]="estado.name">
                     {{ estado.name }}
                   </option>
@@ -20,7 +20,7 @@
             <div class="form-group col-3 col-md-3">
                 <label class="campos" for="inputCidade">Cidade</label>
                 <select class="form-control" formControlName="nome">
-                  <option selected>Escolher...</option>
+                  <option selected value="">Escolher...</option>
                   <option *ngFor="let cidade of cidades" [ngValue]="cidade.nome">
                     {{ cidade.nome }}
                   </option>
