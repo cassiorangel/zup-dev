@@ -45,7 +45,12 @@
         <div class="col-md-3" *ngFor="let list of listResult">
             <div class="card">
                 <div class="card-body">
-                  <h6 class="card-title">{{ list.cep }} <button type="button" class="btn btn-dark btn-sm bt-lk">Detales</button></h6>               
+                  <h6 class="card-title">{{ list.cep }} 
+                    <button 
+                        type="button" 
+                        class="btn btn-dark btn-sm bt-lk"
+                        (click)="onEdit(list.cep)"
+                    >Detales</button></h6>               
                 </div>
               </div>
         </div>

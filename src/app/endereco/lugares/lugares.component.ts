@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnderecoService } from 'src/app/server/endereco.service';
-import { map, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lugares',
@@ -50,7 +51,9 @@ export class LugaresComponent {
 
   constructor(
     private formEndereco: FormBuilder,
-    private enderecoService: EnderecoService
+    private enderecoService: EnderecoService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.formulario = this.formEndereco.group({
       name: ['', Validators.required],
@@ -85,6 +88,10 @@ export class LugaresComponent {
       nome: ''
     })
     return this.formulario.controls['nome'].disable();
+  }
+
+  onEdit(id: string) {
+    this.router.navigate(['detalhamento', id], { relativeTo: this.route })
   }
 
   ngOnDestroy(): void {
