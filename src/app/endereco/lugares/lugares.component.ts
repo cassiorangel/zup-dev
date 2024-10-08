@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EnderecoService } from 'src/app/server/endereco.service';
-import { Subject, takeUntil } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-lugares',
@@ -58,7 +58,9 @@ export class LugaresComponent {
 
   onSubmit() {
     this.enderecoService.listLogradouro()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+    )
       .subscribe({
         next: (response: any) => {
           console.log(response)

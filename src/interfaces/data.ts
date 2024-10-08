@@ -1,6 +1,6 @@
 export interface Endereco {
     cep: string;
-    endereco: string;
+    logradouro: string;
     estado: string;
     cidade: string;
   }
