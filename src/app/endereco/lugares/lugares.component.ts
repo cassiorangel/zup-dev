@@ -15,6 +15,7 @@ export class LugaresComponent {
 
   private destroy$ = new Subject<void>();
   state: boolean = true;
+  visao: boolean = true;
   listResult: any[] = [];
   retornoCidades: any[] = [];
 
@@ -69,6 +70,8 @@ export class LugaresComponent {
 
   onSubmit() {
 
+    this.visao = false;
+
     this.enderecoService.listLogradouro(this.formulario.value.name, this.formulario.value.nome, this.formulario.value.logradouro)
       .pipe(
         takeUntil(this.destroy$),
@@ -77,8 +80,10 @@ export class LugaresComponent {
         next: (response: any) => {
           console.log(response)
           this.listResult = response;
+          this.visao = true;
         },
         error: (error) => {
+          this.visao = true;
           console.log('algo errado');
         },
       });

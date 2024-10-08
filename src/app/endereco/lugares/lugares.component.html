@@ -33,7 +33,10 @@
 
             <div class="form-group col-3 col-md-3">
                 <div class="bt-estilo">
-                    <button type="submit" class="btn btn-info bt-gr" [disabled]="!formulario.valid">Consultar</button>
+                    <button type="submit" class="btn btn-info bt-gr" [disabled]="!formulario.valid">
+                        <span *ngIf="visao"> Consultar</span>
+                        <span *ngIf="!visao">Carregando ...</span>
+                    </button>
                 </div>    
             </div>
            
