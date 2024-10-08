@@ -66,8 +66,7 @@ describe('LugaresComponent', () => {
     expect(onEndereco).toHaveBeenCalled();
   });
 
-
-  it(`O metodo list erro`, () => {
+  it(`O metodo onChange`, () => {
 
     let obj = [
       {
@@ -97,4 +96,13 @@ describe('LugaresComponent', () => {
     
   });
   
+
+  it(`O metodo onChange if`, () => {
+    component.formulario.patchValue({
+      name: 'RS'
+    })
+    component.onChange();
+    
+  });
+
 });
