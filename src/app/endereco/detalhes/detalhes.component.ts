@@ -23,7 +23,7 @@ export class DetalhesComponent implements OnDestroy {
 
   detalhes () {
     const cep = this.route.snapshot.params['id'];
-    this.dataCep = [cep.slice(0, 5), "-", cep.slice(5)].join('');
+   // this.dataCep = [cep.slice(0, 5), "-", cep.slice(5)].join('');
 
     this.enderecoService.listDetalhes(cep)
     .pipe(
