@@ -21,8 +21,7 @@ describe('EnderecoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it(`serve`, () => {
-    const expectedUrl = `https://viacep.com.br/ws/91260316/json/`;
+  it(`listDetalhes`, () => {
     
     let mockUsers = {
       "cep": "91260-316",
@@ -49,4 +48,27 @@ describe('EnderecoService', () => {
     }).flush(mockUsers);     
   });
     
+
+  it(`listLogradouro`, () => {
+     let es = 'RS';
+     let cd = 'Porto Alegre'; 
+     let nm = 'Jose'; 
+
+    let mockUsers = [{
+      cep: "91260-316",
+      cidade: "Porto Alegre",
+      bairro: 'Mário Quintana',
+      endereco: "Rua São José",
+      estado: "RS"
+      
+    }]
+
+    service.listLogradouro('RS', 'Porto Alegre', 'Jose').subscribe((data) => { // now have to subscribe getUsers method to get data
+      console.log(data)
+    });
+    httpController.expectOne({
+      method: 'GET',
+      url: `https://viacep.com.br/ws/${es}/${cd}/${nm}/json/`,
+    }).flush(mockUsers);     
+  });
 });
