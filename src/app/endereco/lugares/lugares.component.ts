@@ -14,6 +14,7 @@ export class LugaresComponent {
 
   private destroy$ = new Subject<void>();
   state: boolean = true;
+  listResult: any[] = [];
   
   formulario: FormGroup;
 
@@ -66,6 +67,7 @@ export class LugaresComponent {
       .subscribe({
         next: (response: any) => {
           console.log(response)
+          this.listResult = response;
         },
         error: (error) => {
           console.log('algo errado');
