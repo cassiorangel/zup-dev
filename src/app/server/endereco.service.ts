@@ -13,8 +13,8 @@ export class EnderecoService {
     private http: HttpClient
   ) { }
 
-  listLogradouro() {
-    return this.http.get(`${environment.API}`)
+  listLogradouro(estado: string, cidade: string, rua: string) {
+    return this.http.get(`${environment.API}${estado}/${cidade}/${rua}/json/`)
       .pipe(
         map((data: any) => data.map((client: any) => {
           let log = {

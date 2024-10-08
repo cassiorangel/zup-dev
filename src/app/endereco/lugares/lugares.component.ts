@@ -15,7 +15,7 @@ export class LugaresComponent {
   private destroy$ = new Subject<void>();
   state: boolean = true;
   listResult: any[] = [];
-  
+
   formulario: FormGroup;
 
   estados = [
@@ -54,13 +54,14 @@ export class LugaresComponent {
   ) {
     this.formulario = this.formEndereco.group({
       name: ['', Validators.required],
-      nome: [{value: '', disabled: true}, Validators.required],
+      nome: [{ value: '', disabled: true }, Validators.required],
       logradouro: ['', Validators.required]
     })
   }
 
   onSubmit() {
-    this.enderecoService.listLogradouro()
+
+    this.enderecoService.listLogradouro(this.formulario.value.name, this.formulario.value.nome, this.formulario.value.logradouro)
       .pipe(
         takeUntil(this.destroy$),
       )
@@ -73,10 +74,11 @@ export class LugaresComponent {
           console.log('algo errado');
         },
       });
+
   }
 
   onChange() {
-    if(this.formulario.controls['name'].value) {
+    if (this.formulario.controls['name'].value) {
       return this.formulario.controls['nome'].enable();
     }
     this.formulario.patchValue({
