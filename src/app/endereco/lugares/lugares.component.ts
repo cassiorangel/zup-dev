@@ -16,6 +16,7 @@ export class LugaresComponent {
   private destroy$ = new Subject<void>();
   state: boolean = true;
   listResult: any[] = [];
+  retornoCidades: any[] = [];
 
   formulario: FormGroup;
 
@@ -27,25 +28,29 @@ export class LugaresComponent {
     {
       id: 2,
       name: 'SP'
-    },
-    {
-      id: 3,
-      name: 'RJ'
     }
   ];
 
   cidades = [
     {
       id: 1,
+      chave: 'RS',
       nome: 'Porto Alegre'
     },
     {
       id: 2,
-      nome: 'Sao Paulo'
+      chave: 'RS',
+      nome: 'Caxias do Sul'
     },
     {
       id: 3,
-      nome: 'Rio de Janeiro'
+      chave: 'SP',
+      nome: 'Sao Paulo'
+    },
+    {
+      id: 4,
+      chave: 'SP',
+      nome: 'Osasco'
     }
   ];
 
@@ -81,6 +86,10 @@ export class LugaresComponent {
   }
 
   onChange() {
+
+    this.retornoCidades = this.cidades.filter(res => res.chave === this.formulario.controls['name'].value)
+   
+
     if (this.formulario.controls['name'].value) {
       return this.formulario.controls['nome'].enable();
     }

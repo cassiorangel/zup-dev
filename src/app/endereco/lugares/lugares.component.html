@@ -21,7 +21,7 @@
                 <label class="campos" for="inputCidade">Cidade</label>
                 <select class="form-control" formControlName="nome">
                   <option selected value="">Escolher...</option>
-                  <option *ngFor="let cidade of cidades" [ngValue]="cidade.nome">
+                  <option *ngFor="let cidade of retornoCidades" [ngValue]="cidade.nome">
                     {{ cidade.nome }}
                   </option>
                 </select>
