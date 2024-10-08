@@ -10,7 +10,7 @@
         <div class="row">
             <div class="form-group col-2 col-md-2">
                 <label class="campos" for="inputEstado">Estado</label>
-                <select class="form-control" formControlName="name">
+                <select class="form-control" formControlName="name" (change)="onChange()">
                   <option selected value="">Escolher...</option>
                   <option  *ngFor="let estado of estados" [ngValue]="estado.name">
                     {{ estado.name }}

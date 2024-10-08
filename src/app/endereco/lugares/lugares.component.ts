@@ -13,6 +13,8 @@ import { map, Subject, takeUntil } from 'rxjs';
 export class LugaresComponent {
 
   private destroy$ = new Subject<void>();
+  state: boolean = true;
+  
   formulario: FormGroup;
 
   estados = [
@@ -51,7 +53,7 @@ export class LugaresComponent {
   ) {
     this.formulario = this.formEndereco.group({
       name: [''],
-      nome: [''],
+      nome: [{value: '', disabled: true}],
       logradouro: ['']
     })
   }
@@ -60,7 +62,7 @@ export class LugaresComponent {
     this.enderecoService.listLogradouro()
       .pipe(
         takeUntil(this.destroy$),
-    )
+      )
       .subscribe({
         next: (response: any) => {
           console.log(response)
@@ -69,6 +71,16 @@ export class LugaresComponent {
           console.log('algo errado');
         },
       });
+  }
+
+  onChange() {
+    if(this.formulario.controls['name'].value) {
+      return this.formulario.controls['nome'].enable();
+    }
+    this.formulario.patchValue({
+      nome: ''
+    })
+    return this.formulario.controls['nome'].disable();
   }
 
   ngOnDestroy(): void {
