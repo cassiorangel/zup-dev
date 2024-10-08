@@ -4,10 +4,14 @@ import { LugaresComponent } from './lugares.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EnderecoService } from 'src/app/server/endereco.service';
+import { of, throwError } from 'rxjs';
 
 describe('LugaresComponent', () => {
   let component: LugaresComponent;
   let fixture: ComponentFixture<LugaresComponent>;
+
+  let enderecoService: EnderecoService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,10 +22,48 @@ describe('LugaresComponent', () => {
 
     fixture = TestBed.createComponent(LugaresComponent);
     component = fixture.componentInstance;
+    enderecoService = TestBed.inject(EnderecoService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  it(`O metodo list devera ser chamado`, () => {
+    const data: any = [{
+      "cep": "91260-316",
+      "logradouro": "Rua São José",
+      "complemento": "(Lot P Alves)",
+      "unidade": "",
+      "bairro": "Mário Quintana",
+      "localidade": "Porto Alegre",
+      "uf": "RS",
+      "estado": "Rio Grande do Sul",
+      "regiao": "Sul",
+      "ibge": "4314902",
+      "gia": "",
+      "ddd": "51",
+      "siafi": "8801"
+    }]
+
+    const onEndereco = spyOn(enderecoService, 'listLogradouro').and.returnValue(
+      of(data)
+    )
+
+    component.onSubmit();
+    expect(onEndereco).toHaveBeenCalled();
+  });   
+  
+  it(`O metodo list erro`, () => {
+
+    let onEndereco = spyOn(enderecoService, 'listLogradouro').and.returnValue(
+      throwError('error')
+    )
+
+    component.onSubmit();
+    expect(onEndereco).toHaveBeenCalled();
+  });
+  
 });
