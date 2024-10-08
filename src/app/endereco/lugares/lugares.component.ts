@@ -10,19 +10,33 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class LugaresComponent {
   formulario: FormGroup;
+  estados = [
+    {
+      id: 1,
+      name: 'RS'
+    },
+    {
+      id: 2,
+      name: 'SP'
+    },
+    {
+      id: 3,
+      name: 'RJ'
+    }
+  ];
 
   cidades = [
     {
       id: 1,
-      name: 'Porto Alegre'
+      nome: 'Porto Alegre'
     },
     {
       id: 2,
-      name: 'Sao Paulo'
+      nome: 'Sao Paulo'
     },
     {
       id: 3,
-      name: 'Rio de Janeiro'
+      nome: 'Rio de Janeiro'
     }
   ];
 
@@ -30,10 +44,13 @@ export class LugaresComponent {
     private formEndereco: FormBuilder
   ) {
     this.formulario = this.formEndereco.group({
-      nome: [null]
+      name: [''],
+      nome: [''],
+      logradouro: ['']
     })
   }
 
- 
-
+  onSubmit() {
+    console.log(this.formulario.value)
+  }
 }
