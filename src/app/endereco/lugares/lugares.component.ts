@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EnderecoService } from 'src/app/server/endereco.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-lugares',
@@ -9,7 +11,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 export class LugaresComponent {
+
+  private destroy$ = new Subject<void>();
   formulario: FormGroup;
+
   estados = [
     {
       id: 1,
@@ -41,7 +46,8 @@ export class LugaresComponent {
   ];
 
   constructor(
-    private formEndereco: FormBuilder
+    private formEndereco: FormBuilder,
+    private enderecoService: EnderecoService
   ) {
     this.formulario = this.formEndereco.group({
       name: [''],
@@ -51,6 +57,20 @@ export class LugaresComponent {
   }
 
   onSubmit() {
-    console.log(this.formulario.value)
+    this.enderecoService.listLogradouro()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response: any) => {
+          console.log(response)
+        },
+        error: (error) => {
+          console.log('algo errado');
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
