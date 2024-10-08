@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnderecoService } from 'src/app/server/endereco.service';
 import { map, Subject, takeUntil } from 'rxjs';
 
@@ -52,9 +52,9 @@ export class LugaresComponent {
     private enderecoService: EnderecoService
   ) {
     this.formulario = this.formEndereco.group({
-      name: [''],
-      nome: [{value: '', disabled: true}],
-      logradouro: ['']
+      name: ['', Validators.required],
+      nome: [{value: '', disabled: true}, Validators.required],
+      logradouro: ['', Validators.required]
     })
   }
 
