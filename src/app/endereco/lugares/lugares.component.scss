@@ -58,3 +58,25 @@ form [type="password"] {
     /* Microsoft Edge */
     color: #fff;
 }
+
+.card {
+    border: 1px solid #fff;
+    background-color: #202020;
+}
+
+.card-title {
+    color: #fff;
+}
+
+.topo {
+    margin-top: 50px;
+}
+
+.bt-lk {
+    float: right;
+    padding-left: 14px;
+    padding-right: 14px;
+    border: 1px solid #fff;
+    color: rgb(52, 165, 171);
+    font-weight: 600;
+}
