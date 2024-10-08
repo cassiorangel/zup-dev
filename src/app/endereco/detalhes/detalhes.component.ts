@@ -10,6 +10,8 @@ import { Subject, map, switchMap, takeUntil } from 'rxjs';
 })
 export class DetalhesComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
+  listDetalhes: any[] = [];
+  dataCep: string = "";
 
   constructor(
     private enderecoService: EnderecoService,
@@ -21,7 +23,20 @@ export class DetalhesComponent implements OnDestroy {
 
   detalhes () {
     const cep = this.route.snapshot.params['id'];
-    console.log(cep)
+    this.dataCep = [cep.slice(0, 5), "-", cep.slice(5)].join('');
+
+    this.enderecoService.listDetalhes(cep)
+    .pipe(
+      takeUntil(this.destroy$),
+    )
+    .subscribe({
+      next: (response: any) => {
+        this.listDetalhes = response;
+      },
+      error: (error) => {
+        console.log('algo errado');
+      },
+    });
   }
 
 

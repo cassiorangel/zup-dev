@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12">
-            <p class="texto">Detalhes</p>
+            <p class="texto">{{ dataCep }}</p>
 
             <table class="table">
                 <tr class="topo-table">
@@ -10,11 +10,11 @@
                   <th class="textotl">Localidade/UF</th>
                   <th class="textotl">CEP</th>
                 </tr>
-                <tr>
-                  <td class="texto-pn">Alfreds Futterkiste</td>
-                  <td class="texto-pn">Maria Anders</td>
-                  <td class="texto-pn">Germany</td>
-                  <td class="texto-pn">Germany</td>
+                <tr *ngFor="let detalhe of listDetalhes">
+                  <td class="texto-pn">{{ detalhe.endereco }}</td>
+                  <td class="texto-pn">{{ detalhe.bairro }}</td>
+                  <td class="texto-pn">{{ detalhe.cidade }}/{{ detalhe.estado }}</td>
+                  <td class="texto-pn">{{ detalhe.cep }}</td>
                 </tr>
                
               </table>
