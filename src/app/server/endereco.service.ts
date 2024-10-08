@@ -27,4 +27,19 @@ export class EnderecoService {
         }))
       )
   }
+
+  listDetalhes(cep: string) {
+    return this.http.get(`${environment.API}${cep}/json/`)
+      .pipe(
+        map((data: any) => data.map((client: any) => {
+          let log = {
+            cep: client.cep,
+            endereco: client.logradouro,
+            estado: client.uf,
+            cidade: client.localidade
+          }
+          return log;
+        }))
+      )
+  }
 }

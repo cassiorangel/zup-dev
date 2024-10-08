@@ -91,7 +91,7 @@ export class LugaresComponent {
   }
 
   onEdit(id: string) {
-    this.router.navigate(['detalhamento', id], { relativeTo: this.route })
+    this.router.navigate(['detalhamento', id?.replace(/\.|\-/g, '')], { relativeTo: this.route })
   }
 
   ngOnDestroy(): void {
