@@ -34,7 +34,7 @@ export class DetalhesComponent implements OnDestroy {
         this.listDetalhes = response;
       },
       error: (error) => {
-        console.log('algo errado');
+        alert('algo errado');
       },
     });
   }

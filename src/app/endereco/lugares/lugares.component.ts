@@ -84,7 +84,7 @@ export class LugaresComponent {
         },
         error: (error) => {
           this.visao = true;
-          console.log('algo errado');
+          alert('algo errado');
         },
       });
 
