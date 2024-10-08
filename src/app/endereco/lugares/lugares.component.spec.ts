@@ -65,5 +65,36 @@ describe('LugaresComponent', () => {
     component.onSubmit();
     expect(onEndereco).toHaveBeenCalled();
   });
+
+
+  it(`O metodo list erro`, () => {
+
+    let obj = [
+      {
+        id: 1,
+        chave: 'RS',
+        nome: 'Porto Alegre'
+      },
+      {
+        id: 2,
+        chave: 'RS',
+        nome: 'Caxias do Sul'
+      },
+      {
+        id: 3,
+        chave: 'SP',
+        nome: 'Sao Paulo'
+      },
+      {
+        id: 4,
+        chave: 'SP',
+        nome: 'Osasco'
+      }
+    ];
+
+    component.cidades = obj;
+    component.onChange();
+    
+  });
   
 });
