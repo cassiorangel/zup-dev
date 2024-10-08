@@ -87,8 +87,11 @@ export class LugaresComponent {
 
   onChange() {
 
-    this.retornoCidades = this.cidades.filter(res => res.chave === this.formulario.controls['name'].value)
-   
+    this.retornoCidades = this.cidades.filter(res => res.chave === this.formulario.controls['name'].value);
+
+    this.formulario.patchValue({
+      nome: ''
+    });
 
     if (this.formulario.controls['name'].value) {
       return this.formulario.controls['nome'].enable();
